@@ -1,5 +1,5 @@
 node {
     stage('tryingtolearn'){
-        echo "love india"
+        sh 'echo loveindia'
     }
 } 
