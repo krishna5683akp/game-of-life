@@ -1,0 +1,5 @@
+node {
+    stage('tryingtolearn'){
+        echo "love india"
+    }
+} 
