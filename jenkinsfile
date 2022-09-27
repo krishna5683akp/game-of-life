@@ -2,4 +2,8 @@ node {
     stage('tryingtolearn'){
         sh 'echo loveindia'
     }
+    stage('learning') {
+        git url: https://github.com/krishna5683akp/game-of-life.git,
+            branch: master
+    }
 } 
