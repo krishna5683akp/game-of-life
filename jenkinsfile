@@ -7,6 +7,7 @@ pipeline{
            } 
         }
         stage('learning') {
+            agent { label 'JAVA11' }
             steps {
                 git url: 'https://github.com/krishna5683akp/game-of-life.git',
                     branch: 'master'
