@@ -1,0 +1,14 @@
+node('JAVA11') {
+   stage('vcs') {
+        git branch: 'LATEST_PROJECT_1.0', url: 'https://github.com/krishna5683akp/game-of-life.git'
+    }
+    stage("build"){
+        sh 'mvn package'
+    }
+    stage("archive test report") {
+        junit '**/surefire-reports/*xml'
+    }
+    stage("archive artifacts") {
+        archive 'target/gameoflife-web/*.jar'
+    }
+}
