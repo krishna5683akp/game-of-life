@@ -4,6 +4,6 @@ node {
     }
     stage('learning') {
         git url: https://github.com/krishna5683akp/game-of-life.git,
-            branch: master
+            branch: 'master'
     }
 } 
