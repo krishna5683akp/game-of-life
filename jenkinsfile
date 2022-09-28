@@ -4,6 +4,9 @@ pipeline {
         choice(name: 'BRANCH', choices: ['LATEST_PROJECT_1.0', 'master'], description: 'branch_build')
         string(name: 'MAVEN_GOAL', defaultValue: 'package', description: 'maven_goal')
     }
+    triggers {
+        pollSCM('* * * * *')
+    }
     stages {
         stage('vcs') {
             steps {
