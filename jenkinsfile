@@ -22,7 +22,7 @@ pipeline {
         }
         stage('archive artifacts') {
             steps {
-                archive 'target/gameoflife-web/*.jar'
+                archive 'target/gameoflife-web/*.war'
             }
         }
     }
