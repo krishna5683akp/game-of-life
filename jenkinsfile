@@ -1,14 +1,30 @@
-node('JAVA11') {
-   stage('vcs') {
-        git branch: 'LATEST_PROJECT_1.0', url: 'https://github.com/krishna5683akp/game-of-life.git'
+pipeline {
+    agent {label 'CENTOSJAVA11'}
+    parameters {
+        choice(name: 'BRANCH', choices: ['LATEST_PROJECT_1.0', 'master'], description: 'branch_build')
     }
-    stage("build"){
-        sh 'mvn package'
+    stages {
+        stage('vcs') {
+            steps {
+                git branch: "${params.BRANCH}", url: 'https://github.com/krishna5683akp/game-of-life.git'
+
+            }
+        }
+        stage('build') {
+            steps {
+                sh 'mvn package'
+            }
+        }
+        stage('archive test report') {
+            steps {
+                junit '**/surefire-reports/*xml'
+            }
+        }
+        stage('archive artifacts') {
+            steps {
+                archive 'target/gameoflife-web/*.jar'
+            }
+        }
     }
-    stage("archive test report") {
-        junit '**/surefire-reports/*xml'
-    }
-    stage("archive artifacts") {
-        archive 'target/gameoflife-web/*.jar'
-    }
+
 }
