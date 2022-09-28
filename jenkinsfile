@@ -13,5 +13,11 @@ pipeline{
                     branch: 'master'
             }
         }
+        stage('build') {
+            agent { label 'JAVA11' }
+            steps {
+                sh 'mvn package'
+            }
+        }
     }
 }
