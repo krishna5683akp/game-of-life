@@ -2,6 +2,7 @@ pipeline {
     agent {label 'CENTOSJAVA11'}
     parameters {
         choice(name: 'BRANCH', choices: ['LATEST_PROJECT_1.0', 'master'], description: 'branch_build')
+        string(name: 'MAVEN_GOAL', defaultValue: 'package', description: 'maven_goal')
     }
     stages {
         stage('vcs') {
@@ -12,7 +13,7 @@ pipeline {
         }
         stage('build') {
             steps {
-                sh 'mvn package'
+                sh ''mvn ${params.MAVEN_GOAL}''
             }
         }
         stage('archive test report') {
