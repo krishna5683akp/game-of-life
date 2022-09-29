@@ -6,6 +6,8 @@ pipeline {
     }
     triggers {
         pollSCM('* * * * *')
+        upstream(upstreamProjects: 'spring-petclinic-pipeline', threshold: hudson.model.Result.SUCCESS)
+
     }
     stages {
         stage('vcs') {
